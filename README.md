@@ -1,11 +1,11 @@
-# api-consulta-mg
+api-consulta-mg
 
-#api produzida em fastApi
+api produzida em fastApi
 
-#comando para atualizar bibliotecas do projeto
+comando para atualizar bibliotecas do projeto
 
 pip install -r requirements.txt
 
-#comando para salvar bibliotecas
+comando para salvar bibliotecas
 
 pip freeze > requirements.txt
