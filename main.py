@@ -1,6 +1,14 @@
-from database.banco_de_dados import BancoDeDados
+from data.database.banco_de_dados import BancoDeDados
+from fastapi import FastAPI, APIRouter
+from views.cliente_view import cliente_router
 
-if __name__ == '__main__':
-    bd = BancoDeDados()
-    bd.conexao()
-    bd.consulta_todos_clientes()
+app = FastAPI()
+router = APIRouter()
+
+app.include_router(cliente_router)
+
+
+
+
+
+

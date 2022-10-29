@@ -11,7 +11,7 @@ class BancoDeDados:
         self.cursor = self.conn.cursor()
 
     def consulta_todos_clientes(self):
-        clientes = []
+        clientes = {}
         sql = 'SELECT * FROM CLIENTE'
 
         self.cursor.execute(sql)
@@ -26,9 +26,10 @@ class BancoDeDados:
 
 
             }
-            clientes.append(val)
+            print(val)
 
-        return clientes
+
+            return val
 
     def consulta_cliente_especifico(self):
         pass
