@@ -5,17 +5,23 @@ from sqlalchemy import delete
 
 
 class ProdutoService:
-    # @staticmethod
-    # async def create_cliente(nome : str, cpf : str, telefone : str):
-    #     async with async_session() as session:
-    #         session.add(Cliente(nome=nome, cpf=cpf, telefone=telefone))
-            # await session.commit()
+    @staticmethod
+    async def create_produto(descricao : str, preco : float):
+        async with async_session() as session:
+            session.add(Produto(descricao=descricao, preco=preco))
+            await session.commit()
     
     # @staticmethod
-    # async def delete_cliente(cliente_id: int):
+    # async def atualizar_produto(id : int, descricao : str, preco : float):
     #     async with async_session() as session:
-    #         await session.execute(delete(Cliente).where(Cliente.id==cliente_id))
+    #         session.update(Produto(id=id, descricao=descricao, preco=preco))
     #         await session.commit()
+    
+    @staticmethod
+    async def delete_produto(produto_id: int):
+        async with async_session() as session:
+            await session.execute(delete(Produto).where(Produto.id==produto_id))
+            await session.commit()
     
     @staticmethod
     async def list_produto():
@@ -23,8 +29,8 @@ class ProdutoService:
             result = await session.execute(select(Produto))
             return result.scalars().all()
     
-    # @staticmethod
-    # async def get_by_id(cliente_id):
-    #     async with async_session() as session:
-    #         result = await session.execute(select(Cliente).where(Cliente.id==cliente_id))
-    #         return result.scalar()
+    @staticmethod
+    async def get_by_id(produto_id):
+        async with async_session() as session:
+            result = await session.execute(select(Produto).where(Produto.id==produto_id))
+            return result.scalar()
