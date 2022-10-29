@@ -2,7 +2,9 @@ from fastapi import APIRouter, HTTPException
 from typing import List
 
 from services.cliente_service import ClienteService
-from schemas.cliente_schemas import (ClientePost, StandardOutput, ErrorOutput, ClienteListOutput)
+from schemas.cliente_schemas import (ClientePost, ClienteListOutput)
+from schemas.base_shema import (StandardOutput, ErrorOutput)
+
 cliente_router = APIRouter(prefix='/api/cliente')
 
 

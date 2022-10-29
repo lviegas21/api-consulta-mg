@@ -5,12 +5,6 @@ class ClientePost(BaseModel):
     cpf: str
     telefone: str
 
-class StandardOutput(BaseModel):
-    message: str
-
-class ErrorOutput(BaseModel):
-    detail: str
-
 class ClienteListOutput(BaseModel):
     id: int
     nome: str
