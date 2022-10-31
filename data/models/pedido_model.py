@@ -1,6 +1,6 @@
 from ..models.models_base import Base
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
-class PedidoModel(Base):
+class Pedido(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     quantidade = Column(Integer)
     total = Column(Float)
