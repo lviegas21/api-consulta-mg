@@ -1,21 +1,23 @@
+import datetime
+
 from pydantic import BaseModel
 
 class PedidoPost(BaseModel):
-    quantidade: str
-    total: str
-    data: str
-    fk_cliente: str
-    fk_endereco: str
-    fk_produto: str
+    quantidade: int
+    total: float
+    data: datetime.date
+    fk_cliente: int
+    fk_endereco: int
+    fk_produto: int
 
 class PedidoListOutput(BaseModel):
     id: int
-    quantidade: str
-    total: str
-    data: str
-    fk_cliente: str
-    fk_endereco: str
-    fk_produto: str
+    quantidade: int
+    total: float
+    data: datetime.date
+    fk_cliente: int
+    fk_endereco: int
+    fk_produto: int
 
     class Config:
         orm_mode = True

@@ -9,7 +9,7 @@ pedido_router = APIRouter(prefix='/api/pedido')
 
 
 @pedido_router.post('', response_model=StandardOutput, responses={'400': {'model': ErrorOutput}})
-async def criar_produto(pedidoPost: PedidoPost):
+async def criar_pedido(pedidoPost: PedidoPost):
     try:
         await PedidoService.create_pedido(
             quantidade=pedidoPost.quantidade,
@@ -25,7 +25,7 @@ async def criar_produto(pedidoPost: PedidoPost):
 
 
 @pedido_router.delete('/{pedido_id}', response_model=StandardOutput, responses={400: {'model': ErrorOutput}})
-async def produto_delete(pedido_id: int):
+async def pedido_delete(pedido_id: int):
     try:
         await PedidoService.delete_pedido(pedido_id)
         return StandardOutput(message='Ok')
@@ -34,7 +34,7 @@ async def produto_delete(pedido_id: int):
 
 
 @pedido_router.get('/all', response_model=List[PedidoListOutput], responses={400: {'model': ErrorOutput}})
-async def produto_all():
+async def pedido_all():
     try:
         return await PedidoService.list_pedido()
     except Exception as error:
