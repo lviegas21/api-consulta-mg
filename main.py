@@ -1,4 +1,4 @@
-from data.database.banco_de_dados import BancoDeDados
+
 from fastapi import FastAPI, APIRouter
 from views.cliente_view import cliente_router
 from views.produto_view import produto_router

@@ -4,7 +4,7 @@ from sqlalchemy.future import select
 from sqlalchemy import delete
 
 
-class ProdutoService:
+class PedidoService:
     @staticmethod
     async def create_pedido(quantidade: int, total: float, data: str, fk_cliente, fk_produto, fk_endereco):
         async with async_session() as session:
