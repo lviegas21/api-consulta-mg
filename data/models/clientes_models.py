@@ -1,8 +1,7 @@
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.orm import  relationship
+from ..models.models_base import Base
 
-
-Base = declarative_base()
 
 class Cliente(Base):
     __tablename__ = 'cliente'
@@ -10,4 +9,4 @@ class Cliente(Base):
     nome = Column(String)
     cpf = Column(String, unique=True)
     telefone = Column(String)
-    # endereco = relationship('Endereco', backref='cliente', lazy='subquery')
+    endereco = relationship('Endereco', backref='cliente', lazy='subquery')

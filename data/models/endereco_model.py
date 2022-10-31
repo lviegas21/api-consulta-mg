@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import declarative_base
+from ..models.models_base import Base
 
 
-Base = declarative_base()
+
 
 class Endereco(Base):
     __tablename__ = 'endereco'
