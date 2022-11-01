@@ -5,6 +5,12 @@ class ClientePost(BaseModel):
     cpf: str
     telefone: str
 
+class ClienteUpdate(BaseModel):
+    id: int
+    nome: str
+    cpf: str
+    telefone: str
+
 class ClienteListOutput(BaseModel):
     id: int
     nome: str

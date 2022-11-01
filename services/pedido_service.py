@@ -1,3 +1,5 @@
+import datetime
+
 from utils.conexao_banco import async_session
 from data.models.pedido_model import Pedido
 from sqlalchemy.future import select
@@ -6,7 +8,7 @@ from sqlalchemy import delete
 
 class PedidoService:
     @staticmethod
-    async def create_pedido(quantidade: int, total: float, data: str, fk_cliente, fk_produto, fk_endereco):
+    async def create_pedido(quantidade: int, total: float, data: datetime.date, fk_cliente, fk_produto, fk_endereco):
         async with async_session() as session:
             session.add(Pedido(quantidade=quantidade, total=total, data=data, fk_cliente=fk_cliente, fk_produto=fk_produto, fk_endereco=fk_endereco))
             await session.commit()

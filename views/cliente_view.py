@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from typing import List
 
 from services.cliente_service import ClienteService
-from schemas.cliente_schemas import (ClientePost, ClienteListOutput)
+from schemas.cliente_schemas import (ClientePost, ClienteListOutput, ClienteUpdate)
 from schemas.base_shema import (StandardOutput, ErrorOutput)
 
 cliente_router = APIRouter(prefix='/api/cliente')
@@ -16,15 +16,33 @@ async def criar_cliente(clientepost: ClientePost):
         return StandardOutput(message='Criado com sucesso') 
     except Exception as error:
         raise HTTPException(400, detail=str(error))
+
+
+# @cliente_router.put('/{id}', response_model=StandardOutput, responses={400: {'model': ErrorOutput}})
+# async def cliente_update(id: int, clientPostUpdate: ClienteUpdate):
+#     try:
+#
+#
+#         await ClienteService.update_cliente(
+#             id=id,
+#             nome=clientPostUpdate.nome,
+#             telefone=clientPostUpdate.telefone,
+#             cpf=clientPostUpdate.cpf,
+#         )
+#         return StandardOutput(message='Ok')
+#
+#
+#     except Exception as error:
+#          raise HTTPException(400, detail=str(error))
     
 
-@cliente_router.delete('/{cliente_id}', response_model=StandardOutput, responses={400: {'model': ErrorOutput}})
-async def cliente_delete(cliente_id: int):
-    try:
-        await ClienteService.delete_cliente(cliente_id)
-        return StandardOutput(message='Ok') 
-    except Exception as error:
-        raise HTTPException(400, detail=str(error))
+# @cliente_router.delete('/{cliente_id}', response_model=StandardOutput, responses={400: {'model': ErrorOutput}})
+# async def cliente_delete(cliente_id: int):
+#     try:
+#         await ClienteService.delete_cliente(cliente_id)
+#         return StandardOutput(message='Ok')
+#     except Exception as error:
+#         raise HTTPException(400, detail=str(error))
 
 
 @cliente_router.get('/all', response_model=List[ClienteListOutput], responses={400: {'model': ErrorOutput}})

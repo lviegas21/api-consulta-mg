@@ -4,7 +4,7 @@ class EstoquePost(BaseModel):
     quantidade: int
     fk_produto: int
 
-class PedidoListOutput(BaseModel):
+class EstoqueListOutput(BaseModel):
     id: int
     quantidade: int
     fk_produto: int

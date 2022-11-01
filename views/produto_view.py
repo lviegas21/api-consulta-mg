@@ -17,13 +17,13 @@ async def criar_produto(produtopost: ProdutoPost):
         raise HTTPException(400, detail=str(error))
     
 
-@produto_router.delete('/{produto_id}', response_model=StandardOutput, responses={400: {'model': ErrorOutput}})
-async def produto_delete(produto_id: int):
-    try:
-        await ProdutoService.delete_produto(produto_id)
-        return StandardOutput(message='Ok') 
-    except Exception as error:
-        raise HTTPException(400, detail=str(error))
+# @produto_router.delete('/{produto_id}', response_model=StandardOutput, responses={400: {'model': ErrorOutput}})
+# async def produto_delete(produto_id: int):
+#     try:
+#         await ProdutoService.delete_produto(produto_id)
+#         return StandardOutput(message='Ok')
+#     except Exception as error:
+#         raise HTTPException(400, detail=str(error))
 
 @produto_router.get('/all', response_model=List[ProdutoListOutput], responses={400: {'model': ErrorOutput}})
 async def produto_all():

@@ -17,13 +17,13 @@ async def criar_endereco(enderecoPost: EnderecoPost):
         raise HTTPException(400, detail=str(error))
     
 
-@endereco_router.delete('/{endereco_id}', response_model=StandardOutput, responses={400: {'model': ErrorOutput}})
-async def endereco_delete(endereco_id: int):
-    try:
-        await EnderecoService.delete_endereco(endereco_id)
-        return StandardOutput(message='Ok') 
-    except Exception as error:
-        raise HTTPException(400, detail=str(error))
+# @endereco_router.delete('/{endereco_id}', response_model=StandardOutput, responses={400: {'model': ErrorOutput}})
+# async def endereco_delete(endereco_id: int):
+#     try:
+#         await EnderecoService.delete_endereco(endereco_id)
+#         return StandardOutput(message='Ok')
+#     except Exception as error:
+#         raise HTTPException(400, detail=str(error))
 
 @endereco_router.get('/all', response_model=List[EnderecoListOutput], responses={400: {'model': ErrorOutput}})
 async def endereco_all():
