@@ -1,7 +1,7 @@
 from utils.conexao_banco import async_session
 from data.models.clientes_models import Cliente
 from sqlalchemy.future import select
-from sqlalchemy import delete
+from sqlalchemy import delete, update
 
 
 class ClienteService:
@@ -16,6 +16,18 @@ class ClienteService:
         async with async_session() as session:
             await session.execute(delete(Cliente).where(Cliente.id==cliente_id))
             await session.commit()
+
+    # @staticmethod
+    # async def update_cliente(id : int, nome : str, telefone: str, cpf : str):
+    #     async with async_session() as session:
+    #         results = await session.execute(select(Cliente).where(Cliente.id == id))
+    #         if results == None:
+    #             return 'Error'
+    #         await session.execute(update(Cliente(nome=nome, telefone=telefone, cpf=cpf)))
+    #
+    #
+    #         #await session.execute(select(Cliente).where(Cliente.id == id).update(nome=nome, telefone=telefone, cpf=cpf))
+    #         await session.commit()
     
     @staticmethod
     async def list_cliente():
@@ -26,5 +38,7 @@ class ClienteService:
     @staticmethod
     async def get_by_id(cliente_id):
         async with async_session() as session:
+
+
             result = await session.execute(select(Cliente).where(Cliente.id==cliente_id))
             return result.scalar()

@@ -24,13 +24,13 @@ async def criar_pedido(pedidoPost: PedidoPost):
         raise HTTPException(400, detail=str(error))
 
 
-@pedido_router.delete('/{pedido_id}', response_model=StandardOutput, responses={400: {'model': ErrorOutput}})
-async def pedido_delete(pedido_id: int):
-    try:
-        await PedidoService.delete_pedido(pedido_id)
-        return StandardOutput(message='Ok')
-    except Exception as error:
-        raise HTTPException(400, detail=str(error))
+# @pedido_router.delete('/{pedido_id}', response_model=StandardOutput, responses={400: {'model': ErrorOutput}})
+# async def pedido_delete(pedido_id: int):
+#     try:
+#         await PedidoService.delete_pedido(pedido_id)
+#         return StandardOutput(message='Ok')
+#     except Exception as error:
+#         raise HTTPException(400, detail=str(error))
 
 
 @pedido_router.get('/all', response_model=List[PedidoListOutput], responses={400: {'model': ErrorOutput}})

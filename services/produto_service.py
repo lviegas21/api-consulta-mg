@@ -11,11 +11,11 @@ class ProdutoService:
             session.add(Produto(descricao=descricao, preco=preco))
             await session.commit()
     
-    # @staticmethod
-    # async def atualizar_produto(id : int, descricao : str, preco : float):
-    #     async with async_session() as session:
-    #         session.update(Produto(id=id, descricao=descricao, preco=preco))
-    #         await session.commit()
+    @staticmethod
+    async def atualizar_produto(id : int, descricao : str, preco : float):
+        async with async_session() as session:
+            session.update(Produto(id=id, descricao=descricao, preco=preco))
+            await session.commit()
     
     @staticmethod
     async def delete_produto(produto_id: int):
