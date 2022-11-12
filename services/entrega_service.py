@@ -18,6 +18,12 @@ class EntregaService:
             await session.commit()
 
     @staticmethod
+    async def atualizar_entrega(id: int, status: str):
+        async with async_session() as session:
+            await session.execute(f"update entrega set status='{status}' where id={id};")
+            await session.commit()
+
+    @staticmethod
     async def list_entrega():
         async with async_session() as session:
             result = await session.execute(select(Entrega))

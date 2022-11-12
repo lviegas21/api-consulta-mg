@@ -11,9 +11,11 @@ class EnderecoPost(BaseModel):
     fk_cliente:int
 
 class EnderecoUpdate(BaseModel):
-    id: int
-    descricao: str
-    preco: float
+    rua: str
+    numero: int
+    bairro: str
+    cep: str
+    complemento: str
 
 
 class EnderecoListOutput(BaseModel):

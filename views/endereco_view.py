@@ -40,10 +40,11 @@ async def day_summary(endereco_id: int):
     except Exception as error:
         raise HTTPException(400, detail=str(error))
 
-# @endereco_router.put('', response_model=StandardOutput, responses={'400': {'model': ErrorOutput}})
-# async def atualizar_produto(produtoupdate: ProdutoUpdate):
-#     try:
-#         await ProdutoService.atualizar_produto(id=produtoupdate.id, descricao=produtoupdate.descricao, preco=produtoupdate.preco)
-#         return StandardOutput(message='Atualizado com sucesso') 
-#     except Exception as error:
-#         raise HTTPException(400, detail=str(error))
+@endereco_router.put('/{id}', response_model=StandardOutput, responses={'400': {'model': ErrorOutput}})
+async def atualizar_endereco(id: int, enderecoUpdate: EnderecoUpdate):
+    try:
+        await EnderecoService.atualizar_endereco(id=id, rua=enderecoUpdate.rua, numero=enderecoUpdate.numero,
+                                                 bairro=enderecoUpdate.bairro, cep=enderecoUpdate.cep, complemento=enderecoUpdate.complemento)
+        return StandardOutput(message='Atualizado com sucesso')
+    except Exception as error:
+        raise HTTPException(400, detail=str(error))

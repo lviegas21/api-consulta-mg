@@ -7,6 +7,6 @@ class Cliente(Base):
     __tablename__ = 'cliente'
     id = Column(Integer, primary_key=True, autoincrement=True)
     nome = Column(String)
-    cpf = Column(String, unique=True)
+    cpf = Column(String)
     telefone = Column(String)
     endereco = relationship('Endereco', backref='cliente', lazy='subquery')

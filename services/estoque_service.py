@@ -30,7 +30,7 @@ class EstoqueService:
             return result.scalar()
 
     @staticmethod
-    async def atualizar_estoque(id : int, quantidade : str, fk_produto):
+    async def atualizar_estoque(id : int, quantidade : int):
         async with async_session() as session:
-            session.update(Estoque(id=id, quantidade=quantidade, fk_produto=fk_produto))
+            session.execute(f"update estoque set quantidade='{quantidade}' where id={id};")
             await session.commit()

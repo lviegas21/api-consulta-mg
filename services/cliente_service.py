@@ -17,17 +17,24 @@ class ClienteService:
             await session.execute(delete(Cliente).where(Cliente.id==cliente_id))
             await session.commit()
 
-    # @staticmethod
-    # async def update_cliente(id : int, nome : str, telefone: str, cpf : str):
-    #     async with async_session() as session:
-    #         results = await session.execute(select(Cliente).where(Cliente.id == id))
-    #         if results == None:
-    #             return 'Error'
-    #         await session.execute(update(Cliente(nome=nome, telefone=telefone, cpf=cpf)))
-    #
-    #
-    #         #await session.execute(select(Cliente).where(Cliente.id == id).update(nome=nome, telefone=telefone, cpf=cpf))
-    #         await session.commit()
+    @staticmethod
+    async def update_cliente(id: int, nome : str, telefone: str, cpf : str):
+        async with async_session() as session:
+            await session.execute(f"update cliente set nome='{nome}', telefone='{telefone}', cpf='{cpf}' where id={id};")
+
+            await session.commit()
+
+            # up = await session.execute(update(Cliente).values(
+            #
+            #     nome=nome,
+            #     telefone=telefone,
+            #     cpf=cpf,
+            # ))
+            #
+            #
+            #
+            # await session.refresh(up)
+
     
     @staticmethod
     async def list_cliente():

@@ -11,17 +11,17 @@ class EnderecoService:
             session.add(Endereco(rua=rua, numero=numero, bairro=bairro, cep=cep, complemento=complemento, fk_cliente=fk_cliente))
             await session.commit()
     
-    # @staticmethod
-    # async def atualizar_produto(id : int, descricao : str, preco : float):
-    #     async with async_session() as session:
-    #         session.update(Produto(id=id, descricao=descricao, preco=preco))
-    #         await session.commit()
-    
     @staticmethod
-    async def delete_endereco(endereco_id: int):
+    async def atualizar_endereco(id : int, rua : str, numero : int, bairro: str, cep: str, complemento: str):
         async with async_session() as session:
-            await session.execute(delete(Endereco).where(Endereco.id==endereco_id))
+            await session.execute(f"update endereco set rua='{rua}', numero={numero}, bairro='{bairro}', cep='{cep}', complemento='{complemento}' where id={id};")
             await session.commit()
+    
+    # @staticmethod
+    # async def delete_endereco(endereco_id: int):
+    #     async with async_session() as session:
+    #         await session.execute(delete(Endereco).where(Endereco.id==endereco_id))
+    #         await session.commit()
     
     @staticmethod
     async def list_endereco():

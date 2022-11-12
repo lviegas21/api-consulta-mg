@@ -10,6 +10,11 @@ class PedidoPost(BaseModel):
     fk_endereco: int
     fk_produto: int
 
+class PedidoUpdate(BaseModel):
+    quantidade: int
+    total: float
+    data: datetime.date
+
 class PedidoListOutput(BaseModel):
     id: int
     quantidade: int

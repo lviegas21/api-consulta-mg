@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from typing import List
 
 from services.pedido_service import PedidoService
-from schemas.pedido_schema import (PedidoPost, PedidoListOutput)
+from schemas.pedido_schema import (PedidoPost, PedidoListOutput, PedidoUpdate)
 from schemas.base_shema import (StandardOutput, ErrorOutput)
 
 pedido_router = APIRouter(prefix='/api/pedido')
@@ -31,6 +31,14 @@ async def criar_pedido(pedidoPost: PedidoPost):
 #         return StandardOutput(message='Ok')
 #     except Exception as error:
 #         raise HTTPException(400, detail=str(error))
+
+@pedido_router.put('/{pedido_id}', response_model=StandardOutput, responses={'400': {'model': ErrorOutput}})
+async def atualizar_estoque(pedido: int, pedidoUpdate: PedidoUpdate):
+    try:
+        await PedidoService.atualizar_pedido(id=pedido, quantidade=pedidoUpdate.quantidade, total=pedidoUpdate.total, data=pedidoUpdate.data)
+        return StandardOutput(message='Atualizado com sucesso')
+    except Exception as error:
+        raise HTTPException(400, detail=str(error))
 
 
 @pedido_router.get('/all', response_model=List[PedidoListOutput], responses={400: {'model': ErrorOutput}})
