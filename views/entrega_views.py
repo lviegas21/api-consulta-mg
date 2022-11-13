@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from typing import List
 
 from services.entrega_service import EntregaService
-from schemas.entrega_schema import (EntregaPost, EntregaListOutput)
+from schemas.entrega_schema import (EntregaPost, EntregaListOutput, EntregaUpdate)
 from schemas.base_shema import (StandardOutput, ErrorOutput)
 
 entrega_router = APIRouter(prefix='/api/entrega')
@@ -17,6 +17,15 @@ async def criar_pedido(entregaPost: EntregaPost):
 
         )
         return StandardOutput(message='Criado com sucesso')
+    except Exception as error:
+        raise HTTPException(400, detail=str(error))
+
+
+@entrega_router.put('/{entrega_id}', response_model=StandardOutput, responses={'400': {'model': ErrorOutput}})
+async def atualizar_endereco(entrega_id: int, entregaUpdate: EntregaUpdate):
+    try:
+        await EntregaService.atualizar_entrega(id=entrega_id, status=entregaUpdate.status)
+        return StandardOutput(message='Atualizado com sucesso')
     except Exception as error:
         raise HTTPException(400, detail=str(error))
 

@@ -14,7 +14,7 @@ class ProdutoService:
     @staticmethod
     async def atualizar_produto(id : int, descricao : str, preco : float):
         async with async_session() as session:
-            session.update(Produto(id=id, descricao=descricao, preco=preco))
+            session.execute(f"update pedido set descricao='{descricao}', preco={preco} where id={id};")
             await session.commit()
     
     @staticmethod

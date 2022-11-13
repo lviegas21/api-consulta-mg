@@ -9,6 +9,9 @@ class EstoqueListOutput(BaseModel):
     quantidade: int
     fk_produto: int
 
+class EstoqueUpdate(BaseModel):
+    quantidade: int
+
 
     class Config:
         orm_mode = True

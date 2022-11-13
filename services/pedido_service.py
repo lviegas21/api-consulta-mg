@@ -33,8 +33,8 @@ class PedidoService:
             result = await session.execute(select(Pedido).where(Pedido.id == pedido_id))
             return result.scalar()
 
-    # @staticmethod
-    # async def atualizar_produto(id : int, descricao : str, preco : float):
-    #     async with async_session() as session:
-    #         session.update(Produto(id=id, descricao=descricao, preco=preco))
-    #         await session.commit()
+    @staticmethod
+    async def atualizar_pedido(id : int, quantidade : int, total : float, data: datetime.date):
+        async with async_session() as session:
+            session.execute(f"update pedido set quantidade='{quantidade}', total='{total}', data='{data}' where id={id};")
+            await session.commit()

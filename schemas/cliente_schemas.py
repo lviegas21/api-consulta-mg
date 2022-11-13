@@ -6,7 +6,7 @@ class ClientePost(BaseModel):
     telefone: str
 
 class ClienteUpdate(BaseModel):
-    id: int
+
     nome: str
     cpf: str
     telefone: str
