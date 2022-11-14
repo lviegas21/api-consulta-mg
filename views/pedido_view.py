@@ -14,7 +14,7 @@ async def criar_pedido(pedidoPost: PedidoPost):
         await PedidoService.create_pedido(
             quantidade=pedidoPost.quantidade,
             total=pedidoPost.total,
-            data=pedidoPost.data,
+            data_pedido=pedidoPost.data,
             fk_cliente=pedidoPost.fk_cliente,
             fk_produto=pedidoPost.fk_produto,
             fk_endereco=pedidoPost.fk_endereco,
@@ -35,7 +35,7 @@ async def criar_pedido(pedidoPost: PedidoPost):
 @pedido_router.put('/{pedido_id}', response_model=StandardOutput, responses={'400': {'model': ErrorOutput}})
 async def atualizar_estoque(pedido: int, pedidoUpdate: PedidoUpdate):
     try:
-        await PedidoService.atualizar_pedido(id=pedido, quantidade=pedidoUpdate.quantidade, total=pedidoUpdate.total, data=pedidoUpdate.data)
+        await PedidoService.atualizar_pedido(id=pedido, quantidade=pedidoUpdate.quantidade, total=pedidoUpdate.total, data_pedido=pedidoUpdate.data)
         return StandardOutput(message='Atualizado com sucesso')
     except Exception as error:
         raise HTTPException(400, detail=str(error))
