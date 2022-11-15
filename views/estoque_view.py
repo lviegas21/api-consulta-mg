@@ -49,6 +49,6 @@ async def estoque_all():
 @estoque_router.get('/{estoque_id}', response_model=EstoqueListOutput, responses={400: {'model': ErrorOutput}})
 async def day_summary(estoque_id: int):
     try:
-        return await EstoqueService.get_by_id(estoque_id)
+        return await EstoqueService.get_by_id(id=estoque_id)
     except Exception as error:
         raise HTTPException(400, detail=str(error))

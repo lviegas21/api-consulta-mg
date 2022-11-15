@@ -24,9 +24,9 @@ class EstoqueService:
             return result.scalars().all()
 
     @staticmethod
-    async def get_by_id(estoque_id):
+    async def get_by_id(id: int):
         async with async_session() as session:
-            result = await session.execute(select(Estoque).where(Estoque.id == estoque_id))
+            result = await session.execute(select(Estoque).where(Estoque.id == id))
             return result.scalar()
 
     @staticmethod

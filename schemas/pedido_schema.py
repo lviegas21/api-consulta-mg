@@ -2,6 +2,9 @@ import datetime
 
 from pydantic import BaseModel
 
+from data.models.clientes_models import Cliente
+
+
 class PedidoPost(BaseModel):
     quantidade: int
     total: float
@@ -20,6 +23,7 @@ class PedidoListOutput(BaseModel):
     quantidade: int
     total: float
     data_pedido: datetime.date
+
     fk_cliente: int
     fk_endereco: int
     fk_produto: int
