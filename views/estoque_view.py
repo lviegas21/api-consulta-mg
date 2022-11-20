@@ -29,14 +29,6 @@ async def criar_pedido(estoquePost: EstoquePost):
 #     except Exception as error:
 #         raise HTTPException(400, detail=str(error))
 
-@estoque_router.put('/{estoque_id}', response_model=StandardOutput, responses={'400': {'model': ErrorOutput}})
-async def atualizar_estoque(estoque_id: int, estoqueUpdate: EstoqueUpdate):
-    try:
-        await EstoqueService.atualizar_estoque(id=estoque_id, quantidade=estoqueUpdate.quantidade)
-        return StandardOutput(message='Atualizado com sucesso')
-    except Exception as error:
-        raise HTTPException(400, detail=str(error))
-
 
 @estoque_router.get('/all', response_model=List[EstoqueListOutput], responses={400: {'model': ErrorOutput}})
 async def estoque_all():
@@ -49,6 +41,14 @@ async def estoque_all():
 @estoque_router.get('/{estoque_id}', response_model=EstoqueListOutput, responses={400: {'model': ErrorOutput}})
 async def day_summary(estoque_id: int):
     try:
-        return await EstoqueService.get_by_id(id=estoque_id)
+        return await EstoqueService.get_by_id(estoque_id)
+    except Exception as error:
+        raise HTTPException(400, detail=str(error))
+
+@estoque_router.put('/{estoque_id}', response_model=StandardOutput, responses={'400': {'model': ErrorOutput}})
+async def atualizar_endereco(estoque_id: int, estoqueUpdate: EstoqueUpdate):
+    try:
+        await EstoqueService.atualizar_estoque(id=estoque_id, quantidade=estoqueUpdate.quantidade)
+        return StandardOutput(message='Atualizado com sucesso')
     except Exception as error:
         raise HTTPException(400, detail=str(error))

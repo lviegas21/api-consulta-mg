@@ -1,3 +1,5 @@
+import time
+
 from utils.conexao_banco import async_session
 from data.models.produto_model import Produto
 from sqlalchemy.future import select
@@ -12,9 +14,10 @@ class ProdutoService:
             await session.commit()
     
     @staticmethod
-    async def atualizar_produto(id : int, descricao : str, preco : float):
+    async def atualizar_produto(id : int, descricao : str, preco : float, photos: str):
         async with async_session() as session:
-            session.execute(f"update pedido set descricao='{descricao}', preco={preco} where id={id};")
+
+            await session.execute(f"update produto set descricao='{descricao}', preco={preco}, photos='{photos}' where id={id};")
             await session.commit()
     
     @staticmethod

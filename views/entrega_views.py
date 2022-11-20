@@ -48,8 +48,8 @@ async def estoque_all():
 
 
 @entrega_router.get('/{entrega_id}', response_model=EntregaListOutput, responses={400: {'model': ErrorOutput}})
-async def day_summary(estoque_id: int):
+async def day_summary(entrega_id: int):
     try:
-        return await EntregaService.get_by_id(estoque_id)
+        return await EntregaService.get_by_id(entrega_id)
     except Exception as error:
         raise HTTPException(400, detail=str(error))

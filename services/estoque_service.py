@@ -24,13 +24,13 @@ class EstoqueService:
             return result.scalars().all()
 
     @staticmethod
-    async def get_by_id(id: int):
+    async def get_by_id(estoque_id):
         async with async_session() as session:
-            result = await session.execute(select(Estoque).where(Estoque.id == id))
+            result = await session.execute(select(Estoque).where(Estoque.id == estoque_id))
             return result.scalar()
 
     @staticmethod
-    async def atualizar_estoque(id : int, quantidade : int):
+    async def atualizar_estoque(id : int, quantidade : int, fk_produto):
         async with async_session() as session:
-            session.execute(f"update estoque set quantidade='{quantidade}' where id={id};")
+            session.update(Estoque(id=id, quantidade=quantidade, fk_produto=fk_produto))
             await session.commit()

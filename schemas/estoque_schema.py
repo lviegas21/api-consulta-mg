@@ -4,13 +4,13 @@ class EstoquePost(BaseModel):
     quantidade: int
     fk_produto: int
 
+class EstoqueUpdate(BaseModel):
+    quantidade: int
+
 class EstoqueListOutput(BaseModel):
     id: int
     quantidade: int
     fk_produto: int
-
-class EstoqueUpdate(BaseModel):
-    quantidade: int
 
 
     class Config:

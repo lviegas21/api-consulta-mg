@@ -43,7 +43,7 @@ async def day_summary(produto_id: int):
 @produto_router.put('/{produto_id}', response_model=StandardOutput, responses={'400': {'model': ErrorOutput}})
 async def atualizar_produto(produto_id: int, produtoupdate: ProdutoUpdate):
     try:
-        await ProdutoService.atualizar_produto(id=produto_id, descricao=produtoupdate.descricao, preco=produtoupdate.preco)
+        await ProdutoService.atualizar_produto(id=produto_id, descricao=produtoupdate.descricao, preco=produtoupdate.preco, photos=produtoupdate.photos)
         return StandardOutput(message='Atualizado com sucesso')
     except Exception as error:
         raise HTTPException(400, detail=str(error))
