@@ -30,6 +30,7 @@ class ProdutoService:
     async def list_produto():
         async with async_session() as session:
             result = await session.execute(select(Produto))
+            #print(result.scalars().all())
             return result.scalars().all()
     
     @staticmethod

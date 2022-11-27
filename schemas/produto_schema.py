@@ -5,6 +5,7 @@ class ProdutoPost(BaseModel):
     preco: float
 
 
+
 class ProdutoUpdate(BaseModel):
     descricao: str
     preco: float
