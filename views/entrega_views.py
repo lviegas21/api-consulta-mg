@@ -9,7 +9,7 @@ entrega_router = APIRouter(prefix='/api/entrega')
 
 
 @entrega_router.post('', response_model=StandardOutput, responses={'400': {'model': ErrorOutput}})
-async def criar_pedido(entregaPost: EntregaPost):
+async def create_entrega(entregaPost: EntregaPost):
     try:
         await EntregaService.create_entrega(
             status=entregaPost.status,

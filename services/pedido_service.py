@@ -8,9 +8,9 @@ from sqlalchemy import delete
 
 class PedidoService:
     @staticmethod
-    async def create_pedido(quantidade: int, total: float, data_pedido: datetime.date, fk_cliente, fk_produto, fk_endereco):
+    async def create_pedido(quantidade: int, total: float, date_pedido: str, fk_cliente, fk_produto, fk_endereco):
         async with async_session() as session:
-            session.add(Pedido(quantidade=quantidade, total=total, data=data, fk_cliente=fk_cliente, fk_produto=fk_produto, fk_endereco=fk_endereco))
+            session.add(Pedido(quantidade=quantidade, total=total, date_pedido=date_pedido, fk_cliente=fk_cliente, fk_produto=fk_produto, fk_endereco=fk_endereco))
             await session.commit()
 
 
@@ -34,7 +34,7 @@ class PedidoService:
             return result.scalar()
 
     @staticmethod
-    async def atualizar_pedido(id : int, quantidade : int, total : float, data_pedido: datetime.date):
+    async def atualizar_pedido(id : int, quantidade : int, total : float, date_pedido: str):
         async with async_session() as session:
-            session.execute(f"update pedido set quantidade='{quantidade}', total='{total}', data='{data}' where id={id};")
+            session.execute(f"update pedido set quantidade='{quantidade}', total='{total}', date_produto='{date_pedido}' where id={id};")
             await session.commit()
